@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form with Toggle Password Visibility</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #e9ecef;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .password-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+      .password-wrapper input {
+        padding-right: 30px; /* Space for the icon */
+      }
+      .password-wrapper .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px; /* Adjust as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Login Form</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required />
+            <span class="toggle-password" id="togglePassword">👁️</span>
+          </div>
+        </div>
+        <button type="submit">Login</button>
+        <p id="message"></p>
+      </form>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // Hardcoded username and password for demonstration purposes
+        var storedUsername = "angelo";
+        var storedPassword = "admin123";
+
+        $("#loginForm").on("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          var username = $("#username").val();
+          var password = $("#password").val();
+
+          if (username === storedUsername && password === storedPassword) {
+            // Redirect to dashboard.html on successful login
+            window.location.href = "dashboard.html";
+          } else {
+            $("#message").text("Invalid username or password.");
+          }
+        });
+
+        // Toggle password visibility
+        $("#togglePassword").on("click", function () {
+          var passwordField = $("#password");
+          var type =
+            passwordField.attr("type") === "password" ? "text" : "password";
+          passwordField.attr("type", type);
+          $(this).text(type === "password" ? "👁️" : "🙈"); // Change icon based on visibility
+        });
+      });
+    </script>
+  </body>
+</html>
