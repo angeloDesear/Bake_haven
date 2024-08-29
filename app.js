@@ -9,3 +9,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
 document.getElementById('joinBtn').addEventListener('click', function() {
     alert('Join us functionality not implemented yet.');
 });
+
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    alert('Item added to cart!');
+});
